@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CyberSpace/ScriptableObjects/PrimitiveSet")]
 public class CyberSpacePrimitivesSO : ScriptableObject
 {
-    public CyberSpaceTerrainObject _cubePrimitive;
-    public CyberSpaceTerrainObject _hexPrimitive;
+    public CyberSpaceTerrainObject CubePrimitive;
+    public CyberSpaceTerrainObject HexPrimitive;
 }

@@ -43,12 +43,30 @@ namespace CyberSpace
 
         private void GenerateCubeTerrain(Vector3 startPos, int radius)
         {
-            throw new NotImplementedException();
+            for (int x = 0; x < radius; x++)
+            {
+                for (int y = 0; y < radius; y++)
+                {
+                    Vector3 cubePosition = startPos + CalculateCubePosition(x, y);
+
+                    GameObject gridObj = GameObject.Instantiate(CyberSpaceManager.Instance.Settings.PrimitivesSet.CubePrimitive.gameObject);
+                    gridObj.transform.position = cubePosition;
+                    gridObj.transform.parent = this.transform;
+                    gridObj.name = $"GridObj[{x}|{y}]";
+                    _grid[cubePosition] = gridObj.GetComponent<CyberSpaceTerrainObject>();
+                }
+            }
         }
 
         Vector3 CalculateCubePosition(int x, int y)
         {
-            return new Vector3(0f, 0f, 0f);
+            float width = CyberSpaceManager.Instance.Settings.PrimitivesSet.CubePrimitive.transform.localScale.x;
+            float height = CyberSpaceManager.Instance.Settings.PrimitivesSet.CubePrimitive.transform.localScale.z;
+
+            float xPos = x * width;
+            float zPos = y * height;
+
+            return new Vector3(xPos, -CyberSpaceManager.Instance.Settings.PrimitivesSet.CubePrimitive.transform.localScale.y, zPos);
         }
         private void GenerateHexTerrain(Vector3 startPos, int radius)
         {
@@ -58,7 +76,7 @@ namespace CyberSpace
                 {
                     Vector3 hexPosition = startPos + CalculateHexPosition(x, y);
 
-                    GameObject gridObj = GameObject.Instantiate(CyberSpaceManager.Instance.Settings.PrimitivesSet._hexPrimitive.gameObject);
+                    GameObject gridObj = GameObject.Instantiate(CyberSpaceManager.Instance.Settings.PrimitivesSet.HexPrimitive.gameObject);
                     gridObj.transform.position = hexPosition;
                     gridObj.transform.parent = this.transform;
                     gridObj.name = $"GridObj[{x}|{y}]";
@@ -70,13 +88,13 @@ namespace CyberSpace
         Vector3 CalculateHexPosition(int x, int y)
         {
             // Calculate the position of the hex based on its grid coordinates
-            float width = 1.752f * CyberSpaceManager.Instance.Settings.PrimitivesSet._hexPrimitive.transform.localScale.x;
-            float height = 1.5f * CyberSpaceManager.Instance.Settings.PrimitivesSet._hexPrimitive.transform.localScale.y;
+            float width = 1.752f * CyberSpaceManager.Instance.Settings.PrimitivesSet.HexPrimitive.transform.localScale.x;
+            float height = 1.5f * CyberSpaceManager.Instance.Settings.PrimitivesSet.HexPrimitive.transform.localScale.z;
 
             float xPos = x * width + (y % 2 == 1 ? width / 2f : 0f);
-            float yPos = y * height;
+            float zPos = y * height;
 
-            return new Vector3(xPos, -CyberSpaceManager.Instance.Settings.PrimitivesSet._hexPrimitive.transform.localScale.y, yPos);
+            return new Vector3(xPos, -CyberSpaceManager.Instance.Settings.PrimitivesSet.HexPrimitive.transform.localScale.y, zPos);
         }
 
         internal void Destroy()

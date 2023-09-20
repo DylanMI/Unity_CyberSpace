@@ -14,7 +14,7 @@ namespace CyberSpace.UnityEditor
             DrawDefaultInspector();
             if (GUILayout.Button("Generate Terrain"))
             {
-                CyberSpaceManager.Instance.TerrainManager.Editor_GenerateTerrain(CyberSpaceTerrainType.Hex, new Vector3(), 100);
+                CyberSpaceManager.Instance.TerrainManager.Editor_GenerateTerrain(CyberSpaceTerrainType.Cube, new Vector3(), 100);
             }
             if (GUILayout.Button("Apply HeightMap"))
             {

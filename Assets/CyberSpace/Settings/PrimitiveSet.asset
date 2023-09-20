@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9cebd56de1f903499a7df18e2323574, type: 3}
   m_Name: PrimitiveSet
   m_EditorClassIdentifier: 
-  _cubePrimitive: {fileID: 1853646980663241539, guid: 9b7a648a024fa5142bd5a10eb42e1a2e, type: 3}
-  _hexPrimitive: {fileID: 7569281723370681461, guid: 9373c5ee33e029c489ba654d4abd4c9b, type: 3}
+  CubePrimitive: {fileID: 1853646980663241539, guid: 9b7a648a024fa5142bd5a10eb42e1a2e, type: 3}
+  HexPrimitive: {fileID: 7569281723370681461, guid: 9373c5ee33e029c489ba654d4abd4c9b, type: 3}
