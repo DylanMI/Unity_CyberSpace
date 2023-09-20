@@ -9,14 +9,22 @@ namespace CyberSpace.UnityEditor
     [CustomEditor(typeof(CyberSpaceManager))]
     public class CyberSpaceManagerEditor : Editor
     {
+        public int Size = 100;
+        public CyberSpaceTerrainType Type = CyberSpaceTerrainType.Hex;
+
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
+
+            Size = EditorGUILayout.IntField("Grid size", Size);
+            Type = (CyberSpaceTerrainType)EditorGUILayout.EnumPopup("Terrain type", Type);
+
+
             if (GUILayout.Button("Generate Terrain"))
             {
-                CyberSpaceManager.Instance.TerrainManager.Editor_GenerateTerrain(CyberSpaceTerrainType.Cube, new Vector3(), 100);
+                CyberSpaceManager.Instance.TerrainManager.Editor_GenerateTerrain(Type, new Vector3(), Size);
             }
-            if (GUILayout.Button("Apply HeightMap"))
+            if (GUILayout.Button($"Apply HeightMap[{Size}PX x {Size}PX]"))
             {
                 string path = EditorUtility.OpenFilePanel("Load  Heightmap", "", "");
                 var rawData = System.IO.File.ReadAllBytes(path);
