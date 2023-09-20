@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9cebd56de1f903499a7df18e2323574, type: 3}
+  m_Name: PrimitiveSet
+  m_EditorClassIdentifier: 
+  _cubePrimitive: {fileID: 1853646980663241539, guid: 9b7a648a024fa5142bd5a10eb42e1a2e, type: 3}
+  _hexPrimitive: {fileID: 7569281723370681461, guid: 9373c5ee33e029c489ba654d4abd4c9b, type: 3}

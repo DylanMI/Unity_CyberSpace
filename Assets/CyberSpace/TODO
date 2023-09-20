@@ -1,0 +1,20 @@
+== Static terrain ==
+- Remapping heightmap to CyberSpaceObject dimension
+- CyberspaceObjects merge into 1 mesh
+    - simplifier when scale Y is same
+    - full mesh data consolidation under 1 terrain object
+- When hex scales, scale grid
+- random scale offset (Gaetan) [noise]
+-
+
+== Dynamic terrain ==
+- Shader based edge movement of terrain
+
+== Effects ==
+- Fog
+-
+
+== Tools ==
+- Spline tool
+    - Generate objects around  spline
+        - make objects dynamically move around it
