@@ -5,5 +5,4 @@ using UnityEditor;
 public class CyberSpaceSettingsSO : ScriptableObject
 {
     public CyberSpacePrimitivesSO PrimitivesSet = null;
-
 }

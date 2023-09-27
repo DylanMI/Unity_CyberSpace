@@ -26,7 +26,11 @@ namespace CyberSpace
             }
         }
 
-        internal void ApplyHeightMap(Texture2D tex)
+        /// <summary>
+        /// Applies a greyscale texture to the CyberspaceTerrain
+        /// </summary>
+        /// <param name="tex"></param>
+        public void ApplyHeightMap(Texture2D tex)
         {
             const int SCALEVARIABLE = 10;
             int counter = 0;
@@ -39,6 +43,22 @@ namespace CyberSpace
                 counter++;
             }
 
+        }
+
+        /// <summary>
+        /// Applies a color texture to the CuberspaceTerrain
+        /// </summary>
+        /// <param name="tex"></param>
+        public void ApplyColorMap(Texture2D tex)
+        {
+            int counter = 0;
+            foreach (var terrainObject in _grid)
+            {
+                Color pixelColor = tex.GetPixel(Convert.ToInt32(counter % Math.Sqrt(_grid.Count)), Convert.ToInt32(counter / Math.Sqrt(_grid.Count)));
+                terrainObject.Value.TerrainObjectMaterial = CyberSpaceManager.Instance.TerrainManager.MaterialsManager.GetOrMakeMaterial(pixelColor);
+
+                counter++;
+            }
         }
 
         private void GenerateCubeTerrain(Vector3 startPos, int radius)

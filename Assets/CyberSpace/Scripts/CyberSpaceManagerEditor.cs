@@ -33,6 +33,15 @@ namespace CyberSpace.UnityEditor
 
                 CyberSpaceManager.Instance.TerrainManager.Editor_ApplyHeightMap(tex);
             }
+            if (GUILayout.Button($"Apply Colormap[{Size}PX x {Size}PX]"))
+            {
+                string path = EditorUtility.OpenFilePanel("Load  Colormap", "", "");
+                var rawData = System.IO.File.ReadAllBytes(path);
+                Texture2D tex = new Texture2D(2, 2); // empty tex
+                tex.LoadImage(rawData);
+
+                CyberSpaceManager.Instance.TerrainManager.Editor_ApplyColorMap(tex);
+            }
             if (GUILayout.Button("Remove Terrain"))
             {
                 CyberSpaceManager.Instance.TerrainManager.Editor_DeepClean();

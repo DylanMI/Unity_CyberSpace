@@ -22,6 +22,7 @@ namespace CyberSpace
         public CyberSpaceTerrainManager TerrainManager { get => _terrainManager ??= new CyberSpaceTerrainManager(); }
         public CyberSpaceSoundEffectsManager SoundManager { get => _soundManager ??= new CyberSpaceSoundEffectsManager(); }
         public CyberSpaceEffectsManager EffectsManager { get => _effectsManager ??= new CyberSpaceEffectsManager(); }
+
         #endregion
 
         #region privates

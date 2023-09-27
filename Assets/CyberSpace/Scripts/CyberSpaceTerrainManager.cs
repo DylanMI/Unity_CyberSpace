@@ -18,11 +18,14 @@ namespace CyberSpace
         private CyberSpaceTerrainType _currentTerrainType = CyberSpaceTerrainType.Cube;
         private CyberSpaceTerrain _currentTerrain = null;
 
+        public TerrainMaterialsManager MaterialsManager { get; private set; }
+
         /// <summary>
         /// Generates the CyberSpaceTerrain, if there is already one it will destroy the previous one
         /// </summary>
         public void GenerateTerrain(Vector3 startPos, int radius)
         {
+            MaterialsManager = new();
             if (_currentTerrain != null)
                 DestroyTerrain();
             else
@@ -69,6 +72,11 @@ namespace CyberSpace
         {
             CyberSpaceTerrain terrain = Editor.FindObjectOfType<CyberSpaceTerrain>();
             terrain.ApplyHeightMap(tex);
+        }
+        internal void Editor_ApplyColorMap(Texture2D tex)
+        {
+            CyberSpaceTerrain terrain = Editor.FindObjectOfType<CyberSpaceTerrain>();
+            terrain.ApplyColorMap(tex);
         }
         internal void Editor_DeepClean()
         {
