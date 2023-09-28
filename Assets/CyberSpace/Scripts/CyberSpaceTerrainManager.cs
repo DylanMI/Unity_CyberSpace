@@ -81,10 +81,10 @@ namespace CyberSpace
             _currentTerrainType = terrainType;
             GenerateTerrain(startPos, radius);
         }
-        internal void Editor_ApplyHeightMap(Texture2D tex)
+        internal void Editor_ApplyHeightMap(Texture2D tex, float heightScale)
         {
             CyberSpaceTerrain terrain = Editor.FindObjectOfType<CyberSpaceTerrain>();
-            terrain.ApplyHeightMap(tex);
+            terrain.ApplyHeightMap(tex, heightScale);
         }
         internal void Editor_ApplyColorMap(Texture2D tex)
         {

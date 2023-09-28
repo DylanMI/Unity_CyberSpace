@@ -30,17 +30,15 @@ namespace CyberSpace
         /// Applies a greyscale texture to the CyberspaceTerrain
         /// </summary>
         /// <param name="tex"></param>
-        public void ApplyHeightMap(Texture2D tex)
+        public void ApplyHeightMap(Texture2D tex, float heightScale)
         {
-            const int SCALEVARIABLE = 10;
             int counter = 0;
-
             ResizeTextureToFitGrid(ref tex);
             foreach (var terrainObject in _grid)
             {
                 Color pixelColor = tex.GetPixel(Convert.ToInt32(counter % Math.Sqrt(_grid.Count)), Convert.ToInt32(counter / Math.Sqrt(_grid.Count)));
                 float avg = (pixelColor.r + pixelColor.g + pixelColor.b) / 3f;
-                terrainObject.Value.transform.localScale = new Vector3(1f, SCALEVARIABLE * avg, 1f);
+                terrainObject.Value.transform.localScale = new Vector3(1f, heightScale * avg, 1f);
 
                 counter++;
             }

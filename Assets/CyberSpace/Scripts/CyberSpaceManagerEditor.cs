@@ -10,6 +10,7 @@ namespace CyberSpace.UnityEditor
     public class CyberSpaceManagerEditor : Editor
     {
         public int Size = 100;
+        public float HeightScale = 10f;
         public CyberSpaceTerrainType Type = CyberSpaceTerrainType.Hex;
 
         public override void OnInspectorGUI()
@@ -17,6 +18,7 @@ namespace CyberSpace.UnityEditor
             DrawDefaultInspector();
 
             Size = EditorGUILayout.IntField("Grid size", Size);
+            HeightScale = EditorGUILayout.FloatField("Grid height scale", HeightScale);
             Type = (CyberSpaceTerrainType)EditorGUILayout.EnumPopup("Terrain type", Type);
 
 
@@ -31,7 +33,7 @@ namespace CyberSpace.UnityEditor
                 Texture2D tex = new Texture2D(2, 2); // empty tex
                 tex.LoadImage(rawData);
 
-                CyberSpaceManager.Instance.TerrainManager.Editor_ApplyHeightMap(tex);
+                CyberSpaceManager.Instance.TerrainManager.Editor_ApplyHeightMap(tex, HeightScale);
             }
             if (GUILayout.Button($"Apply Colormap"))
             {
