@@ -1,0 +1,14 @@
+{
+    "displayName": "DylanMI - Unity_CyberSpace",
+    "version": "0.1",
+    "unity": "2021.3.11f1",
+    "description": "A universal base environment",
+    "keywords": [
+        "unity",
+        "unity3d",
+        "DylanMI",
+        "EnvironmentGeneration"
+    ],
+    "license": "Apache-2.0",
+    "author": "DylanMI"
+}
