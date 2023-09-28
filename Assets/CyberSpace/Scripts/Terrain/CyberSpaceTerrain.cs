@@ -9,7 +9,7 @@ namespace CyberSpace
     {
         Dictionary<Vector3, CyberSpaceTerrainObject> _grid = new Dictionary<Vector3, CyberSpaceTerrainObject>();
 
-        internal void Generate(CyberSpaceTerrainType currentTerrainType, Vector3 startPos, int radius)
+        public void Generate(CyberSpaceTerrainType currentTerrainType, Vector3 startPos, int radius)
         {
             switch (currentTerrainType)
             {
@@ -34,6 +34,8 @@ namespace CyberSpace
         {
             const int SCALEVARIABLE = 10;
             int counter = 0;
+
+            ResizeTextureToFitGrid(ref tex);
             foreach (var terrainObject in _grid)
             {
                 Color pixelColor = tex.GetPixel(Convert.ToInt32(counter % Math.Sqrt(_grid.Count)), Convert.ToInt32(counter / Math.Sqrt(_grid.Count)));
@@ -52,6 +54,8 @@ namespace CyberSpace
         public void ApplyColorMap(Texture2D tex)
         {
             int counter = 0;
+            ResizeTextureToFitGrid(ref tex);
+
             foreach (var terrainObject in _grid)
             {
                 Color pixelColor = tex.GetPixel(Convert.ToInt32(counter % Math.Sqrt(_grid.Count)), Convert.ToInt32(counter / Math.Sqrt(_grid.Count)));
@@ -59,6 +63,12 @@ namespace CyberSpace
 
                 counter++;
             }
+        }
+
+        private void ResizeTextureToFitGrid(ref Texture2D tex)
+        {
+            int dimension = (int)Math.Sqrt(_grid.Count);
+            tex = tex.ResizeTexture(dimension, dimension);
         }
 
         private void GenerateCubeTerrain(Vector3 startPos, int radius)
@@ -105,7 +115,7 @@ namespace CyberSpace
             }
         }
 
-        Vector3 CalculateHexPosition(int x, int y)
+        private Vector3 CalculateHexPosition(int x, int y)
         {
             // Calculate the position of the hex based on its grid coordinates
             float width = 1.752f * CyberSpaceManager.Instance.Settings.PrimitivesSet.HexPrimitive.transform.localScale.x;
@@ -117,7 +127,7 @@ namespace CyberSpace
             return new Vector3(xPos, -CyberSpaceManager.Instance.Settings.PrimitivesSet.HexPrimitive.transform.localScale.y, zPos);
         }
 
-        internal void Destroy()
+        public void Destroy()
         {
             foreach (var item in _grid)
             {

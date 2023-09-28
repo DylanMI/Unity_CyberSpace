@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CyberSpaceTerrainObject : MonoBehaviour
+namespace CyberSpace
 {
-    public Material TerrainObjectMaterial
+    public class CyberSpaceTerrainObject : MonoBehaviour
     {
-        get
+        public Material TerrainObjectMaterial
         {
-            if (_terrainObjectMaterial == null)
-                _terrainObjectMaterial = GetComponent<MeshRenderer>().sharedMaterial;
+            get
+            {
+                if (_terrainObjectMaterial == null)
+                    _terrainObjectMaterial = GetComponent<MeshRenderer>().sharedMaterial;
 
-            return _terrainObjectMaterial;
+                return _terrainObjectMaterial;
+            }
+            set
+            {
+                GetComponent<MeshRenderer>().sharedMaterial = value;
+            }
         }
-        set
-        {
-            GetComponent<MeshRenderer>().sharedMaterial = value;
-        }
+        private Material _terrainObjectMaterial;
     }
-    private Material _terrainObjectMaterial;
 }

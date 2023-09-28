@@ -24,7 +24,7 @@ namespace CyberSpace.UnityEditor
             {
                 CyberSpaceManager.Instance.TerrainManager.Editor_GenerateTerrain(Type, new Vector3(), Size);
             }
-            if (GUILayout.Button($"Apply HeightMap[{Size}PX x {Size}PX]"))
+            if (GUILayout.Button($"Apply HeightMap"))
             {
                 string path = EditorUtility.OpenFilePanel("Load  Heightmap", "", "");
                 var rawData = System.IO.File.ReadAllBytes(path);
@@ -33,7 +33,7 @@ namespace CyberSpace.UnityEditor
 
                 CyberSpaceManager.Instance.TerrainManager.Editor_ApplyHeightMap(tex);
             }
-            if (GUILayout.Button($"Apply Colormap[{Size}PX x {Size}PX]"))
+            if (GUILayout.Button($"Apply Colormap"))
             {
                 string path = EditorUtility.OpenFilePanel("Load  Colormap", "", "");
                 var rawData = System.IO.File.ReadAllBytes(path);

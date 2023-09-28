@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 
-[CreateAssetMenu(menuName = "CyberSpace/ScriptableObjects/MasterSettings")]
-public class CyberSpaceSettingsSO : ScriptableObject
+namespace CyberSpace
 {
-    public CyberSpacePrimitivesSO PrimitivesSet = null;
+    [CreateAssetMenu(menuName = "CyberSpace/ScriptableObjects/MasterSettings")]
+    public class CyberSpaceSettingsSO : ScriptableObject
+    {
+        public CyberSpacePrimitivesSO PrimitivesSet = null;
+    }
 }
