@@ -51,9 +51,9 @@ namespace CyberSpace
         /// Applies a greyscale heightmap to the CyberSpaceTerrain, scaling that terrain
         /// </summary>
         /// <param name="tex"></param>
-        public void ApplyHeightMap(Texture2D tex)
+        public void ApplyHeightMap(Texture2D tex, float heightScale)
         {
-            _currentTerrain.ApplyHeightMap(tex);
+            _currentTerrain.ApplyHeightMap(tex, heightScale);
         }
 
         /// <summary>
