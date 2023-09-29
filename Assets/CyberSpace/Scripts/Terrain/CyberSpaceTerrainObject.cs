@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 namespace CyberSpace
 {
@@ -20,5 +20,17 @@ namespace CyberSpace
             }
         }
         private Material _terrainObjectMaterial;
+
+        public List<CyberSpaceTerrainObjectSocket> Sockets
+        {
+            get
+            {
+                if (_sockets.Count == 0)
+                    _sockets = transform.GetComponentsInChildren<CyberSpaceTerrainObjectSocket>().ToList();
+
+                return _sockets;
+            }
+        }
+        private List<CyberSpaceTerrainObjectSocket> _sockets = new List<CyberSpaceTerrainObjectSocket>();
     }
 }
