@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace CyberSpace
@@ -8,6 +9,18 @@ namespace CyberSpace
     public class CyberSpaceTerrain : MonoBehaviour
     {
         Dictionary<Vector3, CyberSpaceTerrainObject> _grid = new Dictionary<Vector3, CyberSpaceTerrainObject>();
+
+        private void PopulateGridDictionary(bool force = false)
+        {
+            if (_grid.Count == 0 || force)
+            {
+                CyberSpaceTerrainObject[] gridObjects = GetComponentsInChildren<CyberSpaceTerrainObject>();
+                foreach (var obj in gridObjects)
+                {
+                    _grid[obj.transform.position] = obj;
+                }
+            }
+        }
 
         public void Generate(CyberSpaceTerrainType currentTerrainType, Vector3 startPos, int radius)
         {
@@ -82,6 +95,7 @@ namespace CyberSpace
                     gridObj.transform.parent = this.transform;
                     gridObj.name = $"GridObj[{x}|{y}]";
                     _grid[cubePosition] = gridObj.GetComponent<CyberSpaceTerrainObject>();
+                    _grid[cubePosition].Coordinate = new Vector2Int(x, y);
                 }
             }
         }
@@ -109,6 +123,7 @@ namespace CyberSpace
                     gridObj.transform.parent = this.transform;
                     gridObj.name = $"GridObj[{x}|{y}]";
                     _grid[hexPosition] = gridObj.GetComponent<CyberSpaceTerrainObject>();
+                    _grid[hexPosition].Coordinate = new Vector2Int(x, y);
                 }
             }
         }
@@ -134,6 +149,11 @@ namespace CyberSpace
             _grid = new();
         }
 
-
+        public CyberSpaceTerrainObject GetGridObjectAtCoordinate(Vector2Int coordinate)
+        {
+            PopulateGridDictionary();
+            var temp = _grid.Where(x => x.Value.Coordinate == coordinate)?.ToList();
+            return temp[0].Value;
+        }
     }
 }

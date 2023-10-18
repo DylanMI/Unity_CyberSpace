@@ -16,6 +16,17 @@ namespace CyberSpace
     public class CyberSpaceTerrainManager
     {
         private CyberSpaceTerrainType _currentTerrainType = CyberSpaceTerrainType.Cube;
+
+        public CyberSpaceTerrain CurrentTerrain
+        {
+            get
+            {
+                if (_currentTerrain == null)
+                    _currentTerrain = GameObject.FindObjectOfType<CyberSpaceTerrain>();
+
+                return _currentTerrain;
+            }
+        }
         private CyberSpaceTerrain _currentTerrain = null;
 
         public TerrainMaterialsManager MaterialsManager { get; private set; }
@@ -53,7 +64,7 @@ namespace CyberSpace
         /// <param name="tex"></param>
         public void ApplyHeightMap(Texture2D tex, float heightScale)
         {
-            _currentTerrain.ApplyHeightMap(tex, heightScale);
+            CurrentTerrain.ApplyHeightMap(tex, heightScale);
         }
 
         /// <summary>
@@ -62,7 +73,7 @@ namespace CyberSpace
         /// <param name="tex"></param>
         public void ApplyColorMap(Texture2D tex)
         {
-            _currentTerrain.ApplyColorMap(tex);
+            CurrentTerrain.ApplyColorMap(tex);
         }
 
         /// <summary>
@@ -70,7 +81,12 @@ namespace CyberSpace
         /// </summary>
         public void DestroyTerrain()
         {
-            _currentTerrain?.Destroy();
+            CurrentTerrain.Destroy();
+        }
+
+        public CyberSpaceTerrainObject GetGridObjectAtCoordinate(Vector2Int coordinate)
+        {
+            return CurrentTerrain.GetGridObjectAtCoordinate(coordinate);
         }
 
 #if UNITY_EDITOR
@@ -104,6 +120,7 @@ namespace CyberSpace
                 GameObject.DestroyImmediate(terrainObject.gameObject);
             }
         }
+
 #endif
     }
 }

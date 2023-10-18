@@ -20,7 +20,7 @@ namespace CyberSpace
         #region Properties
         public CyberSpaceSettingsSO Settings { get => _settings; set => _settings = value; }
         public CyberSpaceTerrainManager TerrainManager { get => _terrainManager ??= new CyberSpaceTerrainManager(); }
-        public CyberSpaceSoundEffectsManager SoundManager { get => _soundManager ??= new CyberSpaceSoundEffectsManager(); }
+        public CyberSpaceSoundManager SoundManager { get => _soundManager ??= new CyberSpaceSoundManager(); }
         public CyberSpaceEffectsManager EffectsManager { get => _effectsManager ??= new CyberSpaceEffectsManager(); }
 
         #endregion
@@ -28,7 +28,7 @@ namespace CyberSpace
         #region privates
         [SerializeField] private CyberSpaceSettingsSO _settings = null;
         private CyberSpaceTerrainManager _terrainManager = null;
-        private CyberSpaceSoundEffectsManager _soundManager = null;
+        private CyberSpaceSoundManager _soundManager = null;
         private CyberSpaceEffectsManager _effectsManager = null;
         #endregion
     }

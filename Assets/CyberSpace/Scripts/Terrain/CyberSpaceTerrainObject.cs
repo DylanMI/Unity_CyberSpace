@@ -32,5 +32,7 @@ namespace CyberSpace
             }
         }
         private List<CyberSpaceTerrainObjectSocket> _sockets = new List<CyberSpaceTerrainObjectSocket>();
+
+        public Vector2Int Coordinate;
     }
 }
