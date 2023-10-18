@@ -10,6 +10,11 @@ namespace CyberSpace
     {
         Dictionary<Vector3, CyberSpaceTerrainObject> _grid = new Dictionary<Vector3, CyberSpaceTerrainObject>();
 
+        private void Start()
+        {
+            PopulateGridDictionary();
+        }
+
         private void PopulateGridDictionary(bool force = false)
         {
             if (_grid.Count == 0 || force)
@@ -151,7 +156,6 @@ namespace CyberSpace
 
         public CyberSpaceTerrainObject GetGridObjectAtCoordinate(Vector2Int coordinate)
         {
-            PopulateGridDictionary();
             var temp = _grid.Where(x => x.Value.Coordinate == coordinate)?.ToList();
             return temp[0].Value;
         }
